@@ -27,59 +27,6 @@
 
 ---
 
-## 📊 Visual State Machine Architecture
-
-The extension uses an event-driven state machine per `<video>` element with zero polling overhead.
-
-```mermaid
-stateDiagram-v2
-    [*] --> IDLE
-    
-    state IDLE {
-        [*] --> Playing: Video Playing
-        Playing --> UserPaused: User clicks Pause
-    }
-
-    state USER_PAUSED {
-        UserPaused --> Playing: User clicks Play
-    }
-
-    state AUTO_PAUSED {
-        AutoPaused --> Playing: Tab visible & focused
-    }
-
-    Playing --> AUTO_PAUSED: Tab Hidden / Window Blurred (programmatic pause)
-    AUTO_PAUSED --> Playing: Tab Visible & Window Focused (programmatic play)
-```
-
----
-
-## 🏗️ Architecture & Component Flow
-
-```mermaid
-graph TD
-    A["Page Visibility API<br>(visibilitychange)"] --> D["debouncedVisibilityHandler"]
-    B["Window Focus Events<br>(focus / blur)"] --> D
-    
-    D --> E{"Is Page Hidden OR Window Blurred?"}
-    
-    E -- Yes --> F{"Is Video Playing & State == IDLE?"}
-    F -- Yes --> G["programmaticPause()<br>Set _yfpProgrammatic flag<br>Transition to AUTO_PAUSED"]
-    
-    E -- No --> H{"Is State == AUTO_PAUSED?"}
-    H -- Yes --> I["programmaticPlay()<br>Set _yfpProgrammatic flag<br>Transition to IDLE"]
-    H -- No --> J["Do Nothing<br>(Preserve User's Manual Pause)"]
-
-    K["YouTube Navigation<br>(yt-navigate-finish)"] --> L["bindVideo() & reset State"]
-    M["MutationObserver<br>(#movie_player)"] --> N["trySkipAd()"]
-
-    style G fill:#ef4444,color:#fff
-    style I fill:#10b981,color:#fff
-    style J fill:#6b7280,color:#fff
-```
-
----
-
 ## 📂 Directory Structure
 
 ```
