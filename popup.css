@@ -1,0 +1,157 @@
+/* ─── YouTube Focus Pause — Popup Styles ─────────────────────────────────── */
+
+/* Dark theme foundation */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  background: #0f0f14;
+  color: #e4e4e8;
+  min-width: 280px;
+  max-width: 280px;
+}
+
+/* Container */
+.popup-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ─── Header ──────────────────────────────────────────────────────────────── */
+.popup-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.popup-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+}
+
+.popup-title {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+/* ─── Status row ──────────────────────────────────────────────────────────── */
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.status-dot.enabled {
+  background-color: #34d399;
+  box-shadow: 0 0 8px rgba(52, 211, 153, 0.5);
+}
+
+.status-dot.disabled {
+  background-color: #f87171;
+  box-shadow: 0 0 8px rgba(248, 113, 113, 0.4);
+}
+
+.status-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: #a1a1aa;
+  transition: color 0.3s ease;
+}
+
+/* ─── Toggle row ──────────────────────────────────────────────────────────── */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.toggle-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #d4d4d8;
+}
+
+/* Toggle switch (iOS-style) */
+.toggle-switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #3f3f46;
+  border-radius: 24px;
+  transition: background-color 0.25s ease;
+}
+
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: transform 0.25s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.toggle-switch input:checked + .toggle-slider {
+  background-color: #34d399;
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+  transform: translateX(20px);
+}
+
+.toggle-switch input:focus + .toggle-slider {
+  outline: 2px solid rgba(52, 211, 153, 0.4);
+  outline-offset: 2px;
+}
+
+/* ─── Footer ──────────────────────────────────────────────────────────────── */
+.popup-footer {
+  text-align: center;
+}
+
+.popup-footer p {
+  font-size: 11px;
+  color: #52525b;
+  line-height: 1.5;
+}

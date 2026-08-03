@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Focus Pause</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <div class="popup-header">
+      <img src="icons/icon48.png" alt="YouTube Focus Pause" class="popup-icon">
+      <h1 class="popup-title">YouTube Focus Pause</h1>
+    </div>
+
+    <!-- Status indicator -->
+    <div class="status-row">
+      <span id="status-dot" class="status-dot enabled"></span>
+      <span id="status-text" class="status-text">Enabled</span>
+    </div>
+
+    <!-- Toggle switch -->
+    <div class="toggle-row">
+      <label class="toggle-label" for="toggle-switch">Auto Pause</label>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-switch" checked>
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <!-- Footer -->
+    <div class="popup-footer">
+      <p>Pauses videos when you switch away.<br>Resumes when you come back.</p>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
